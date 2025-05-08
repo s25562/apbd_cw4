@@ -22,23 +22,18 @@ public class VisitController
     
     [HttpGet]
     [Route("/GetAllVisits")]
-    public ActionResult GetAllVisits(int id)
+    public ActionResult GetAllVisits()
     { 
         return new OkObjectResult(DataStore._visits);
     }
 
     [HttpPost]
     [Route("/AddVisit")]
-    public ActionResult AddVisit(int id, [FromBody] Visit visit)
+    public ActionResult AddVisit([FromBody] Visit visit)
     {
-        if (!DataStore._visits.Any(a => a._id == id))
-        {
-            visit._id = DataStore._visits.Max(v => v._id) + 1;
-            visit._id = id;
-            DataStore._visits.Add(visit);
-            return new OkObjectResult(visit);
-        }
-        return new NotFoundResult();
+        visit._id = DataStore._visits.Max(v => v._id) + 1;
+        DataStore._visits.Add(visit);
+        return new OkObjectResult(visit);
     }
     
 }
