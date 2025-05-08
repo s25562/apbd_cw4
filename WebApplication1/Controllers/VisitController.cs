@@ -9,8 +9,6 @@ namespace WebApplication1.Controllers;
 [Route("[controller]")]
 public class VisitController
 {
-    List<Visit> _visits = new List<Visit>();
-    
     
     [HttpGet]
     [Route("/GetVisits/{id}")]
@@ -23,7 +21,7 @@ public class VisitController
     }
     
     [HttpGet]
-    [Route("/GetAllVisits/")]
+    [Route("/GetAllVisits")]
     public ActionResult GetAllVisits(int id)
     { 
         return new OkObjectResult(DataStore._visits);
